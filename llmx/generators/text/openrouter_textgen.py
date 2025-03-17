@@ -5,8 +5,6 @@ from ...utils import cache_request, get_models_maxtoken_dict, num_tokens_from_me
 import os
 from openai import OpenAI
 from dataclasses import asdict
-from dotenv import load_dotenv
-load_dotenv()
 
 class OpenRouterTextGenerator(TextGenerator):
     def __init__(

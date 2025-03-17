@@ -147,3 +147,14 @@ providers:
             model: uukuguy/speechless-llama2-hermes-orca-platypus-13b
             device_map: auto
             trust_remote_code: true
+  openrouter:
+    name: OpenRouter
+    description: OpenRouter's LLM models.
+    models:
+      - name: qwen-2.5-72b
+        max_tokens: 4096
+        model:
+          provider: openrouter
+          parameters:
+            model: qwen/qwen-2.5-72b-instruct:free
+            device_map: auto

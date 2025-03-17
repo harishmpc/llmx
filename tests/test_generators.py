@@ -74,3 +74,15 @@ def test_hf_local():
 
     assert ("paris" in answer.lower())
     assert len(hf_local_response.text) == 2
+
+def test_openrouter():
+    openrouter_gen = llm(provider="openrouter")
+    openrouter_response = openrouter_gen.generate(messages, config=config)
+    answer = openrouter_response.text[0].content
+    print(openrouter_response.text[0].content)
+
+    assert ("paris" in answer.lower())
+    assert len(openrouter_response.text) == 2
+
+test_openrouter()
+

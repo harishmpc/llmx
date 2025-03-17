@@ -1,8 +1,10 @@
 from ...utils import load_config
-from .openai_textgen import OpenAITextGenerator
-from .palm_textgen import PalmTextGenerator
-from .cohere_textgen import CohereTextGenerator
-from .anthropic_textgen import AnthropicTextGenerator
+# from .openai_textgen import OpenAITextGenerator
+# from .palm_textgen import PalmTextGenerator
+# from .cohere_textgen import CohereTextGenerator
+# from .anthropic_textgen import AnthropicTextGenerator
+from .openrouter_textgen import OpenRouterTextGenerator
+
 import logging
 
 logger = logging.getLogger("llmx")
@@ -19,9 +21,12 @@ def sanitize_provider(provider: str):
         return "hf"
     elif provider.lower() == "anthropic" or provider.lower() == "claude":
         return "anthropic"
+    elif provider.lower() == "openrouter" or provider.lower() == "openrouter":
+        return "openrouter"
+    
     else:
         raise ValueError(
-            f"Invalid provider '{provider}'. Supported providers are 'openai', 'hf', 'palm', 'cohere', and 'anthropic'."
+            f"Invalid provider '{provider}'. Supported providers are 'openai', 'hf', 'palm', 'cohere', 'openrouter' and 'anthropic'."
         )
 
 
@@ -58,6 +63,8 @@ def llm(provider: str = None, **kwargs):
         return CohereTextGenerator(**kwargs)
     elif provider.lower() == "anthropic":
         return AnthropicTextGenerator(**kwargs)
+    elif provider.lower() == "openrouter":
+        return OpenRouterTextGenerator(**kwargs)
     elif provider.lower() == "hf":
         try:
             import transformers
